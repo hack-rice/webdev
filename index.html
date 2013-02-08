@@ -95,8 +95,22 @@
 				<!-- ====================================================== -->
 
 				<section data-state="soothe">
-					<h1>CSS3</h1>
-					<h3>Provides Style</h3>
+					<section>
+						<h1>CSS3</h1>
+						<h3>Provides Style</h3>
+					</section>
+
+					<section>
+<pre><code class="css"><span class="tag">body</span> <span class="rules">{<span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">500</span>px;</span></span><span class="rule">}</span></span>
+<span class="tag">.divClass</span> <span class="rules">{<span class="rule">
+	<span class="attribute">padding</span>:<span class="value"> <span class="number">20</span>px <span class="number">40</span>px;</span>
+	<span class="attribute">width</span>:<span class="value"> <span class="number">auto</span>;</span></span>
+<span class="rule">}</span></span>
+<span class="tag">#divId</span> <span class="rules">{<span class="rule">
+	<span class="attribute">height</span>:<span class="value"> <span class="number">100</span>px;</span>
+	<span class="attribute">float</span>:<span class="value"> <span class="number">left</span>;</span></span>
+<span class="rule">}</span></span></code></pre>
+					</section>
 				</section>
 
 				<section>
@@ -128,12 +142,23 @@
 				<!-- ====================================================== -->
 
 				<section data-state="soothe">
-					<h1>Javascript</h1>
-					<h3>Builds Functionality</h3>
-				</section>
+					<section>
+						<h1>Javascript</h1>
+						<h3>Builds Functionality</h3>
+					</section>
 
-				<section>
-					<h2>Simple scripting (no JQuery)</h2>
+					<section>
+						<h2>Basic Javascript</h2>
+<pre><code>function biggest (numbers) {
+	var current = numbers[0];
+	for (var i = 0; i < numbers.length; i++) {
+	    if (numbers[i] > current) {
+	        current = numbers[i];
+	    }
+	};
+	return current;
+}</code></pre>
+					</section>
 				</section>
 
 				<section>
