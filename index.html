@@ -118,20 +118,26 @@
                     </section>
 
                     <section>
+                        <h2>Tag types</h2>
 <pre><code class="css"><span class="tag">body</span> <span class="rules">{<span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">500</span>px;</span></span><span class="rule">}</span></span>
-<span class="tag">.divClass</span> <span class="rules">{<span class="rule">
+<span class="tag">.tag-class</span> <span class="rules">{<span class="rule">
     <span class="attribute">padding</span>:<span class="value"> <span class="number">20</span>px <span class="number">40</span>px;</span>
     <span class="attribute">width</span>:<span class="value"> <span class="number">auto</span>;</span></span>
 <span class="rule">}</span></span>
-<span class="tag">#divId</span> <span class="rules">{<span class="rule">
+<span class="tag">#tag-id</span> <span class="rules">{<span class="rule">
     <span class="attribute">height</span>:<span class="value"> <span class="number">100</span>px;</span>
     <span class="attribute">float</span>:<span class="value"> <span class="number">left</span>;</span></span>
 <span class="rule">}</span></span></code></pre>
+                    Notice that "#" delimites an id and "." a class.
                     </section>
 
                     <section>
                         <h2>Spacing Tags</h2>
                         <img src="img/css_explanation.gif" title="Source: http://webdevelopmenttutorials.com/tutorialimage2.gif">
+                        <pre><code class="css"><span class="tag">.tag-class</span> <span class="rules">{<span class="rule">
+    <span class="attribute">padding-top</span>:<span class="value"> <span class="number">40</span>px;</span>
+    <span class="attribute">width</span>:<span class="value"> <span class="number">auto</span>;</span></span>
+<span class="rule">}</span></code></pre>
                     </section>
                 </section>
 
@@ -166,6 +172,41 @@ $(document).ready(function() {
     }
 });</code></pre>
                     </section>
+
+                    <section>
+                        <h2>AJAX via JQuery</h2>
+<pre><code class="javascript">function storeName(userName) {
+    $.ajax({
+        url:'./process_name.php', // destination
+        type:'POST', // sending via POST or GET
+        data: {
+            'name':userName
+        }
+    });
+}
+</code></pre>
+                    </section>
+
+                    <section>
+                        <h2>AJAX with Response</h2>
+<pre><code class="javascript">function storeName(userName) {
+    $.ajax({
+        url:'./process_name.php',
+        type:'POST',
+        data: {
+            'name':userName
+        }
+    }).done(function(data){
+        var response = JSON.parse(data); // makes a map out of the data
+        if(response['status'] == 'success') {
+            alert("Everything is dandy!");
+        } else {
+            alert("Today is a dark day indeed!");
+        }
+    });
+}
+</code></pre>
+                    </section>
                 </section>
 
                 <!-- ====================================================== -->
@@ -183,22 +224,63 @@ $(document).ready(function() {
                     </section>
 
                     <section>
-
+                        <h2>Simple PHP function</h2>
 <pre><code class="php">&lt;?php
-$subreddit = $_POST["subreddit"];
+function biggest($numbers) {
+    $current = $numbers[0];   
+    for ($i=0; $i < count($numbers); $i++) { 
+        if(numbers[$i] > $current) {
+            $current = numbers[$i];
+        }
+    }
+    return $current;
+}
+?&gt;</code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Example Config File</h2>
+<pre><code class="php">&lt;?php /* config.php */
+define( 'DB_HOST', 'localhost' );
+define( 'DB_DATABASE', 'hackrice' );
+define( 'DB_USER', 'root' );
+define( 'DB_PASSWORD', 'password' );
+?&gt;</code></pre>
+<pre><code class="php">&lt;?php /* other_thing.php */
+require_once( 'config.php' );
+...
+?&gt;</code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Database Retrieval</h2>
+<pre><code class="php">&lt;?php
+function get_user_by_id($uid) {
+    $DB = new mysqli( DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE ); 
+    $query = 'SELECT name FROM users WHERE uid = "'.$uid.'"';
+    $result = $DB->query($query);
+    $row = $result->fetch_assoc();
+    return $row['name'];
+}
+?&gt;</code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Database Insertion</h2>
+<pre><code class="php">&lt;?php
+/* process_name.php */
+$name = $_POST['name'];
+$DB = new mysqli( DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE ); 
+$query = 'INSERT INTO users VALUES "'.$name.'"';
+$DB->query($query);
+$response = array();
+$response['status'] = 'success';
+echo json_encode($response);
 ?&gt;</code></pre>
                     </section>
                 </section>
 
                 <!-- ====================================================== -->
-
-                <section data-state="alert">
-                    <section>
-                        <h1>Resources</h1>
-                        <h3>Apart from us</h3>
-                    </section>
-                </section>
-
                 <section>
                     <h3>Happy hacking this weekend!</h3>
                 </section>
